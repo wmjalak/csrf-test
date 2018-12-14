@@ -25,7 +25,6 @@ class Server {
     }));
 
     /** custom middleware */
-/*
     app.use((req, res, next) => {
       const csrfToken = req.csrfToken();
       res.cookie('XSRF-TOKEN', csrfToken, {
@@ -34,7 +33,6 @@ class Server {
       });
       next();
     });
-*/
 
   }
 
