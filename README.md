@@ -44,7 +44,7 @@ To take advantage of this, server needs to set a token in a JavaScript readable 
 1. Start the server `npm start`
 1. Clear cookies on your browser
 1. Notice that everything works in the app
-1. Open up the _Dangerous website_ (`./dangerouns-website/index.html`)
+1. Open up the _Dangerous website_ (`./dangerous-website/index.html`)
 1. See that you can do POST submit
 
 ### Building the app for heroku
