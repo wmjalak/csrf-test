@@ -3,21 +3,45 @@
 
 <head>
   <title>Bad guys Website!</title>
+
+  <script type="text/javascript">
+    var address = "http://localhost:3000";
+
+    function preload() {
+      var xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+          document.getElementById("preload_result").innerHTML = this.responseText;
+        }
+      };
+      xhttp.open("GET", address + "/api/", true);
+      xhttp.send();
+    }
+
+    function post() {
+      var xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+          document.getElementById("post_result").innerHTML = this.responseText;
+        }
+      };
+      xhttp.open("POST", address + "/api/post", true);
+      xhttp.send();
+    }
+
+  </script>
 </head>
 
 <body>
   <h1>Bad guys Website!</h1>
-  <form method="post" action="http://localhost:3000/api/post">
-    <input type="hidden" name="account" value="1234567" />
-    <input type="hidden" name="amount" value="1000000" />
-    <input type="submit" value="Submit" />
-  </form>
+
+  <button type="button" onclick="preload()">Do preload</button>
+  <p id="preload_result"></p>
+
+  <button type="button" onclick="post()">Do post</button>
+  <p id="post_result"></p>
+
   <script>
-    /*
-      setTimeout(function() {
-        document.forms[0].submit()
-      }, 500);
-      */
 
   </script>
 </body>

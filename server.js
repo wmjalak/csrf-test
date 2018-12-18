@@ -1,5 +1,6 @@
 const express = require('express');
 const cookieParser = require('cookie-parser');
+const cors = require('cors');
 const csrf = require('csurf'); // CSRF
 const app = express();
 const routes = require('./api/routes');
@@ -9,7 +10,8 @@ class Server {
 
   constructor() {
     this.initExpressMiddleWare();
-    this.initCsrfProtection();
+    // this.initCors();
+    // this.initCsrfProtection();
     this.initRoutes();
     this.start();
   }
@@ -17,6 +19,25 @@ class Server {
   initExpressMiddleWare() {
     app.use(express.static(__dirname + '/dist'));
     app.use(cookieParser());
+
+
+  }
+
+  initCors() {
+
+/*
+    app.use(cors({
+      allowedHeaders: ["Origin", "X-Requested-With", "Content-Type", "Accept", "X-Access-Token"],
+      credentials: true,
+      methods: "GET,HEAD,OPTIONS,PUT,PATCH,POST,DELETE",
+      origin: (origin, callback) => {
+        console.log('cors origin', origin);
+        callback(null, origin); // allow, and you can put whitelist here
+      },
+      preflightContinue: false
+    }));
+    */
+    app.use(cors());
   }
 
   initCsrfProtection() {
