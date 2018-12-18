@@ -27,7 +27,7 @@ To take advantage of this, server needs to set a token in a JavaScript readable 
   * `app.use(csrf({cookie: true}));`
   * source: https://github.com/expressjs/csurf/blob/master/index.js
 
-### Testing
+## Testing
 
 ### Testing with proxy (Angular & Node)
 
