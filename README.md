@@ -16,6 +16,7 @@ To take advantage of this, server needs to set a token in a JavaScript readable 
 * takes token from a response cookie (named XSRF-TOKEN)
 * sends the token back in the header on all mutating requests (POST, etc.) but not on GET/HEAD
   * note: sends the header to relative URLs only
+* source: https://github.com/angular/angular/blob/master/packages/http/src/backends/xhr_backend.ts
 
 ### NodeJS
 
@@ -24,6 +25,7 @@ To take advantage of this, server needs to set a token in a JavaScript readable 
   * validates requests
   * makes sure that the requests are coming from a proper client
   * `app.use(csrf({cookie: true}));`
+  * source: https://github.com/expressjs/csurf/blob/master/index.js
 
 ### Testing
 
