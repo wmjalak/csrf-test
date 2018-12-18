@@ -1,12 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 
 
 @Injectable()
 export class AppService {
 
-  // baseUrl = 'http://127.0.0.1:3000/api';
   baseUrl = 'api';
 
   constructor(private http: HttpClient) {}

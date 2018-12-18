@@ -4,30 +4,15 @@ import { Observable } from 'rxjs';
 
 @Injectable()
 export class AppInterceptor implements HttpInterceptor {
-
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     request = request.clone({
       // withCredentials: true, // needed for CORS
       setHeaders: {
         'Content-Type': 'application/json',
-        Accept: 'application/json',
-        // 'credentials': 'same-origin'
-
+        Accept: 'application/json'
       }
     });
 
-    return next
-      .handle(request)
-      /*
-      .pipe(
-        tap(event => {
-          if (event instanceof HttpResponse) {
-            console.log(event);
-          }
-        })
-      )
-      */
-      ;
+    return next.handle(request);
   }
-
 }
