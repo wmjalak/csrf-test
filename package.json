@@ -7,8 +7,6 @@
     "client": "ng serve --proxy-config proxy.config.json",
     "server": "node server.js",
     "server:dev": "nodemon server.js",
-    "prod": "npm run build && npm run server",
-    "open": "./dangerous_website/index.html",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",

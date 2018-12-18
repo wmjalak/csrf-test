@@ -2,18 +2,11 @@
 
 Cross-Site Request Forgery (XSRF) is an attack technique by which the attacker can trick an authenticated user into unknowingly executing actions on your website.
 
-If an application uses sessions/cookies you need CSRF protection.
+ Angular's `HttpClient` module supports a [common mechanism](https://en.wikipedia.org/wiki/Cross-site_request_forgery#Cookie-to-Header_Token) used to prevent XSRF attacks. When performing HTTP requests, an interceptor reads a token from a cookie, by default XSRF-TOKEN, and sets it as an HTTP header, X-XSRF-TOKEN. Since only _code that runs on your domain could read the cookie_, the backend can be certain that the HTTP request came from the client application and not an attacker.
 
-> Note: When dealing with single-page app that means you will have fresh csrf-token only upon first render
+ By default, an interceptor sends this cookie on all mutating requests (POST, etc.) to relative URLs but not on GET/HEAD requests or on requests with an absolute URL.
 
-
-## CSRF protection
-1. Server passes a cookie to the client that contains a CSRF token value (`XSRF-TOKEN`)
-1. Client sends the cookie back AND sets a header with the cookie value in it (`X-XSRF-TOKEN`)
-1. Server compares cookie value to header value
-
-## Reason this works?
-* Client can only set the header when it's in the **same domain as the server**
+To take advantage of this, server needs to set a token in a JavaScript readable session cookie called XSRF-TOKEN on either the page load or the first GET request. On subsequent requests the server can verify that the cookie matches the X-XSRF-TOKEN HTTP header, and therefore be sure that only code running on your domain could have sent the request. The token must be unique for each user and must be verifiable by the server; this prevents the client from making up its own tokens.
 
 ## Components
 
@@ -40,7 +33,7 @@ If an application uses sessions/cookies you need CSRF protection.
 * run `npm run server` to start the Node server
 * browse to application address `http://localhost:4200`
 
-`proxy.config.json` is used for taking the API request at the same domain+port where the frontend application runs (4200) and then forward the request to the backend API server. No CORS needed.
+`proxy.config.json` is used for taking the API request at the same domain+port where the frontend application runs (4200) and then forward the request to the backend API server.
 
 ### How to test without the CSRF protection?
 
@@ -52,16 +45,8 @@ If an application uses sessions/cookies you need CSRF protection.
 1. Clear cookies on your browser
 1. Notice that everything works in the app
 1. Open up the _Dangerous website_ (`./dangerouns-website/index.html`)
-1. See that you can do POST
+1. See that you can do POST submit
 
-### Building the app for distribution
+### Building the app for heroku
 
-```
-npm run build   # build angular app
-npm start
-```
-
-### Testing remotely
-
-* Deploy to heroku when testing with Postman
-
+`Package.json` has the proper `postinstall` npm script for Heroku deployment.

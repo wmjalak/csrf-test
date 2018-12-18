@@ -19,24 +19,21 @@ class Server {
   initExpressMiddleWare() {
     app.use(express.static(__dirname + '/dist'));
     app.use(cookieParser());
-
-
   }
 
   initCors() {
-
-/*
-    app.use(cors({
-      allowedHeaders: ["Origin", "X-Requested-With", "Content-Type", "Accept", "X-Access-Token"],
-      credentials: true,
-      methods: "GET,HEAD,OPTIONS,PUT,PATCH,POST,DELETE",
-      origin: (origin, callback) => {
-        console.log('cors origin', origin);
-        callback(null, origin); // allow, and you can put whitelist here
-      },
-      preflightContinue: false
-    }));
-    */
+    /*
+        app.use(cors({
+          allowedHeaders: ["Origin", "X-Requested-With", "Content-Type", "Accept", "X-Access-Token"],
+          credentials: true,
+          methods: "GET,HEAD,OPTIONS,PUT,PATCH,POST,DELETE",
+          origin: (origin, callback) => {
+            console.log('cors origin', origin);
+            callback(null, origin); // allow, and you can put whitelist here
+          },
+          preflightContinue: false
+        }));
+        */
     app.use(cors());
   }
 
